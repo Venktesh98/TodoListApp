@@ -1,0 +1,24 @@
+table {
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+    "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
+  width: 100%;
+}
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+  font-size: 16px;
+  color: rgb(33, 37, 41);
+}
+.countryContainer {
+  display: flex;
+  justify-content: space-around;
+  width: 80px;
+  align-items: center;
+}
+.country-flag {
+  width: 25px;
+  height: 25px;
+}
