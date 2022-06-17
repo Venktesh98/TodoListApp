@@ -2,9 +2,9 @@ import "./RenderTable.css";
 
 import React from "react";
 
-const RenderTable = ({ cityResponse }) => (
+const RenderTable = ({ displayCities }) => (
   <div>
-    {cityResponse.length ? (
+    {displayCities.length ? (
       <table>
         <tbody>
           <tr>
@@ -12,7 +12,7 @@ const RenderTable = ({ cityResponse }) => (
             <th>Name</th>
             <th>Country</th>
           </tr>
-          {cityResponse.map((item, index) => (
+          {displayCities.map((item, index) => (
             <tr key={item.id}>
               <td>#{index + 1}</td>
               <td>{item.city}</td>
@@ -30,7 +30,7 @@ const RenderTable = ({ cityResponse }) => (
         </tbody>
       </table>
     ) : (
-      "Not Data Found!"
+        <div className="no-data-found">"Not Data Found!" ╯︿╰</div>
     )}
   </div>
 );

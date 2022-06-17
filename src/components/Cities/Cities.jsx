@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 import RenderTable from "../Table/RenderTable";
 import "./Cities.css";
 
-const getAxiosRequestOptions = (limit = 5) => {
+const getAxiosRequestOptions = (limit = 3) => {
   const options = {
     method: "GET",
     url: "https://wft-geo-db.p.rapidapi.com/v1/geo/cities",
@@ -46,12 +46,12 @@ export const Cities = () => {
     })();
   }, []);
 
-  const handleOnChange = (event) => {
+  const handleSearchOnChange = (event) => {
     const { value } = event.target;
     setCityName(value);
   };
 
-  const handleOnSubmit = (event) => {
+  const handleSearchSubmit = (event) => {
     event.preventDefault();
 
     if (cityName.length) {
@@ -69,6 +69,10 @@ export const Cities = () => {
     setLimit(value);
   };
 
+  const resetFetchgCities = () => {
+    setLimit("");
+  };
+
   const handleFetchCities = async () => {
     if (limit > 10) {
       alert("Cant fetch more than 10");
@@ -79,6 +83,7 @@ export const Cities = () => {
       setFilteredCities(cities);
       setPages(Math.ceil(cities.length / itemsPerPage));
     }
+    resetFetchgCities();
   };
 
   const paginator = (page) => {
@@ -100,13 +105,13 @@ export const Cities = () => {
   return (
     <div className="container">
       <div>
-        <form onSubmit={handleOnSubmit}>
+        <form onSubmit={handleSearchSubmit} className="search-form">
           <input
             className="search-box"
             ref={searchBoxRef}
             type="text"
             placeholder="Search places..."
-            onChange={handleOnChange}
+            onChange={handleSearchOnChange}
             name="search"
             value={cityName}
           />
@@ -119,9 +124,9 @@ export const Cities = () => {
 
       <div>
         {loading ? (
-          "Loading...."
+          <div className="loader"></div>
         ) : (
-          <RenderTable cityResponse={filteredCities} />
+          <RenderTable displayCities={filteredCities} />
         )}
       </div>
 
